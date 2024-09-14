@@ -1,38 +1,140 @@
-.App {
-  text-align: center;
+/* Resetting margins and padding for body and App */
+/* Resetting margins and padding for body and App */
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* Main container grid layout */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Two equal-width columns */
+  grid-template-rows: 1fr 1fr;     /* Two rows for the right side */
+  height: 100vh;                   /* Full viewport height */
+  width: 100vw;                    /* Full viewport width */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Left half for the chat section */
+.chat-section {
+  grid-column: 1 / 2;             /* Left column */
+  grid-row: 1 / 3;                /* Span both rows (full left half) */
+  background-color: #f0f0f0;      /* Light background */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;               /* Add scrolling for overflow */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Top right section for website preview */
+.website-preview-section {
+  grid-column: 2 / 3;             /* Right column, top */
+  grid-row: 1 / 2;                /* First row */
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Bottom right section for scratch pad */
+.scratch-pad-section {
+  grid-column: 2 / 3;             /* Right column, bottom */
+  grid-row: 2 / 3;                /* Second row */
+  background-color: #d0d0d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Basic styling for placeholders */
+h2 {
+  margin: 0;
+}
+
+
+/* Chat container */
+.chat-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+/* Chat window styling */
+.chat-window {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #ffffff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Message styling */
+.message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+/* User messages */
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.message.user .message-content {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+/* Bot messages */
+.message.bot .message-content {
+  background-color: #f1f0f0;
+}
+
+/* Message icon styling */
+.message-icon {
+  margin: 0 10px;
+  font-size: 24px;
+  color: #555;
+}
+
+/* Message content styling */
+.message-content {
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* Chat input styling */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 0 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
 }
