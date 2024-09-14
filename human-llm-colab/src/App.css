@@ -28,16 +28,21 @@ html, body, #root, .App {
   overflow-y: auto;               /* Add scrolling for overflow */
 }
 
-/* Top right section for website preview */
+/* Website Preview Section */
 .website-preview-section {
-  grid-column: 2 / 3;             /* Right column, top */
-  grid-row: 1 / 2;                /* First row */
-  background-color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  grid-column: 2 / 3; /* Right column, top */
+  grid-row: 1 / 2;    /* First row */
+  padding: 0;         /* Remove padding */
+  margin: 0;          /* Remove margin */
+  height: 100%;       /* Ensure it fills the grid cell vertically */
+  width: 100%;        /* Ensure it fills the grid cell horizontally */
   box-sizing: border-box;
+  overflow: hidden;   /* Prevent content overflow */
+  display: flex;      /* Use flex to manage child elements */
+}
+
+.website-preview-section > * {
+  flex: 1;            /* Allow child to grow and fill the parent */
 }
 
 /* Bottom right section for scratch pad */
