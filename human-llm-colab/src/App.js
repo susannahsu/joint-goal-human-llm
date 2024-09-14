@@ -1,5 +1,6 @@
 import React from 'react';
-import Chat from './Chat'; // Your Chat component
+import Chat from './Chat';
+import WebsitePreview from './WebsitePreview';
 import './App.css';
 
 
@@ -14,7 +15,7 @@ function App() {
 
         {/* Website Preview */}
         <div className="website-preview-section">
-          <h2>Website Preview</h2>
+          <WebsitePreview />
         </div>
 
         {/* Scratch Pad */}

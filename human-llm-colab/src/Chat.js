@@ -7,10 +7,13 @@ import { faUser, faRobot } from '@fortawesome/free-solid-svg-icons';
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
 
   const handleSend = async () => {
     const newMessage = { role: 'user', content: input };
     setMessages([...messages, newMessage]);
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -31,6 +34,8 @@ const Chat = () => {
       setMessages([...messages, newMessage, botMessage]);
     } catch (error) {
       console.error('Error:', error);
+    }finally {
+        setLoading(false);
     }
     setInput('');
   };
@@ -47,6 +52,16 @@ const Chat = () => {
             <p className="message-content">{msg.content}</p>
           </div>
         ))}
+
+        {/* Loading Indicator */}
+        {loading && (
+            <div className="message bot">
+            <FontAwesomeIcon icon={faRobot} className="message-icon" />
+            <p className="message-content typing-indicator">
+                AI is thinking...
+            </p>
+            </div>
+        )}
       </div>
       <div className="chat-input">
         <input
