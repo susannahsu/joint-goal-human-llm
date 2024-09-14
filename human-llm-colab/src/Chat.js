@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faRobot } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faRobot, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 const Chat = () => {
@@ -56,10 +56,10 @@ const Chat = () => {
         {/* Loading Indicator */}
         {loading && (
             <div className="message bot">
-            <FontAwesomeIcon icon={faRobot} className="message-icon" />
-            <p className="message-content typing-indicator">
-                AI is thinking...
-            </p>
+                <FontAwesomeIcon icon={faRobot} className="message-icon" />
+                <p className="message-content">
+                <FontAwesomeIcon icon={faSpinner} spin className="spinner-icon" />
+                </p>
             </div>
         )}
       </div>
