@@ -4,11 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faRobot, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
-const Chat = () => {
+const Chat = ({htmlString, setHtmlString}) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-
 
   const handleSend = async () => {
     const newMessage = { role: 'user', content: input };
@@ -20,7 +19,10 @@ const Chat = () => {
         'https://api.openai.com/v1/chat/completions',
         {
           model: 'gpt-3.5-turbo', 
-          messages: [...messages, newMessage],
+          messages: [
+            ...messages, 
+            { role: 'system', content: `Here is the script: ${htmlString}. Don't give me any instructions.Please return the revised, complete code ONLY, in strict text form.` },
+            newMessage],
         },
         {
           headers: {
@@ -31,6 +33,7 @@ const Chat = () => {
       );
 
       const botMessage = response.data.choices[0].message;
+      setHtmlString(botMessage.content);
       setMessages([...messages, newMessage, botMessage]);
     } catch (error) {
       console.error('Error:', error);
