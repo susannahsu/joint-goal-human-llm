@@ -55,41 +55,71 @@ function App() {
   // `);
   const [htmlString, setHtmlString] = useState(`
     <div class="website-preview">
-    <header class="header">
-      <h1>My Website</h1>
-      <nav class="nav">
-        <ul>
-          <li>
-            <button id="home-btn" class="active">Home</button>
-          </li>
-          <li>
-            <button id="about-btn">About</button>
-          </li>
-          <li>
-            <button id="contact-btn">Contact</button>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Page Navigation</title>
+  <style>
+    /* Basic styles for navigation */
+    .nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    .nav li {
+      display: inline;
+      margin-right: 20px;
+    }
+    
+    /* Initially hide all sections */
+    .main-content section {
+      display: none;
+    }
 
-    <main class="main-content">
-      <div id="home-page">
-        <h2>Welcome to the Home Page</h2>
-        <p>This is the home page of the website.</p>
-      </div>
-      <div id="about-page" style="display: none;">
-        <h2>About Us</h2>
-        <p>This is the about page of the website.</p>
-      </div>
-      <div id="contact-page" style="display: none;">
-        <h2>Contact Us</h2>
-        <p>This is the contact page of the website.</p>
-      </div>
-    </main>
+    /* Show section when targeted */
+    #home:target, #about:target, #contact:target {
+      display: block;
+    }
 
-    <footer class="footer">
-      <p>&copy; 2023 Your Company</p>
-    </footer>
+    /* Default section when no target is active */
+    body:not(:has(:target)) #home {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>My Website</h1>
+    <nav class="nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section id="home">
+      <h2>Welcome to the Home Page</h2>
+      <p>This is the home page of the website.</p>
+    </section>
+    
+    <section id="about">
+      <h2>About Us</h2>
+      <p>This is the about page of the website.</p>
+    </section>
+    
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>This is the contact page of the website.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2023 Your Company</p>
+  </footer>
+
   </div>
 
   <script>
