@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faRobot, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 const Chat = ({htmlString, setHtmlString}) => {
@@ -48,10 +46,6 @@ const Chat = ({htmlString, setHtmlString}) => {
       <div className="chat-window">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.role}`}>
-            <FontAwesomeIcon
-              icon={msg.role === 'user' ? faUser : faRobot}
-              className="message-icon"
-            />
             <p className="message-content">{msg.content}</p>
           </div>
         ))}
@@ -59,9 +53,7 @@ const Chat = ({htmlString, setHtmlString}) => {
         {/* Loading Indicator */}
         {loading && (
             <div className="message bot">
-                <FontAwesomeIcon icon={faRobot} className="message-icon" />
                 <p className="message-content">
-                <FontAwesomeIcon icon={faSpinner} spin className="spinner-icon" />
                 </p>
             </div>
         )}
